@@ -1,0 +1,78 @@
+/* Génération de styles plus attrayants avec Bootstrap */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre */
+    transition: all 0.3s; /* Ajout d'une animation de transition */
+}
+
+.container {
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre */
+    transition: all 0.3s; /* Ajout d'une animation de transition */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre */
+    transition: all 0.3s; /* Ajout d'une animation de transition */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transition: all 0.3s; /* Ajout d'une animation de transition */
+}
+
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre */
+    transition: all 0.3s; /* Ajout d'une animation de transition */
+}
+
+.table th, .table td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+}
+
+.table th {
+    background-color: #f8f9fa;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+.table tbody tr:hover {
+    background-color: #e9ecef;
+    transition: all 0.3s; /* Ajout d'une animation de transition */
+}
+/* Fin de la génération de styles */
+.loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 0.5s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -60px;
+    margin-left: -60px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+
