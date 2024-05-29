@@ -2,9 +2,9 @@
     "short_name": "FruitCalc",
     "name": "Calculateur du poids attendu des fruits séchés",
     "icons": [
-   
+
       {
-        "src": "/icons/icon-512x512.png",
+        "src": "/calculateur-fruit/icons/icon-512x512.png",
         "sizes": "512x512",
         "type": "image/png"
       }
