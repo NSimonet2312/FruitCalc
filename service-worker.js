@@ -4,7 +4,8 @@ self.addEventListener('install', (event) => {
         return cache.addAll([
           '/calculateur-fruit/index.html',
           '/calculateur-fruit/style.css',
-          '/calculateur-fruit/bootstrap-5.3.3-dist/css/bootstrap.min.css'
+          '/calculateur-fruit/bootstrap-5.3.3-dist/css/bootstrap.min.css',
+          '/calculateur-fruit/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js'
         ]);
       })
     );

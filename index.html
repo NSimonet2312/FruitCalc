@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/calculateur-fruit/style.css">
     <link rel="manifest" href="/calculateur-fruit/manifest.json">
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <style>
         /* Génération de styles plus attrayants avec Bootstrap */
         body {
@@ -78,8 +79,8 @@
             </div>
             <div class="col-md-6">
                 <p><strong>Choisissez le type de fruit et entrez le poids des fruits frais <u>en gramme</u>:</strong></p>
-                <form id="dryFruitCalculator" onsubmit="event.preventDefault(); if(this.checkValidity()){calculateDryWeight();} else {alert('Veuillez remplir tous les champs requis.');}">
-                    <div class="form-group">
+                <form id="dryFruitCalculator" onsubmit="event.preventDefault(); if(this.checkValidity()){calculateDryWeight();} else {alert('Veuillez remplir tous les champs requis.');}" class="m-3">
+                    <div class="form-group mb-3">
                         <label for="fruitType">Type de fruits ou légumes</label>
                         <select id="fruitType" class="form-control" required>
                             <option value="">-- Sélectionnez un type de fruit --</option>
@@ -98,17 +99,17 @@
                             <option value="autre">Autre (entrer la teneur en eau et le nom du fruit ci-dessous)</option>
                         </select>
                     </div>
-                    <div class="form-group" style="display:none;" id="customMoistureContentContainer">
+                    <div class="form-group mb-3" style="display:none;" id="customMoistureContentContainer">
                         <label for="customMoistureContent">Teneur en eau en % :</label>
                         <input type="number" id="customMoistureContent" class="form-control" placeholder="Teneur en eau en %" min="0" max="100">
                         <label for="customFruitName">Nom du fruit :</label>
                         <input type="text" id="customFruitName" class="form-control" placeholder="Entrez le nom du fruit">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="freshWeight">Masse des fruits ou légumes frais en gramme</label>
                         <input type="number" id="freshWeight" class="form-control" placeholder="Poids en grammes" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-5">
                         <label for="finalDryPercentage">Teneur en eau finale désirée (15 % = conservation optimale ; < 15 % = extra sec ; > 15 % = à peine sec)</label>
                         <select id="finalDryPercentage" class="form-control" required>
                             <option value="0.10">10%</option>
@@ -124,7 +125,7 @@
                             <option value="0.20">20%</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-grid mb-3">
                         <button type="submit" class="btn btn-primary">Calculer</button>
                     </div>
                     <p id="result"></p>
@@ -197,6 +198,42 @@
     <footer class="bg-primary text-white text-center py-4">
         <p>&copy; 2024 Site réalisé par Nicolas Simonet dans le cadre du cours de <a href="https://juniorentreprise.mediamatique.ch/" style="color: white; text-decoration: underline;">Junior Entreprise</a></p>
     </footer>
+    <!-- Modal pour afficher le résultat du calcul -->
+    <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="resultModalLabel">Résultat du Calcul</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalResultText">Masse à atteindre pour le séchage désiré : </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Modifier la fonction pour afficher le résultat dans la fenêtre modale
+        function calculateDryWeight() {
+            var freshWeight = document.getElementById('freshWeight').value;
+            var moistureContent = document.getElementById('fruitType').value;
+            var fruitName = document.getElementById('fruitType').options[document.getElementById('fruitType').selectedIndex].text;
+            if (moistureContent == "autre") {
+                moistureContent = document.getElementById('customMoistureContent').value;
+                var customFruitName = document.getElementById('customFruitName').value;
+                fruitName = customFruitName ? customFruitName : "fruit non spécifié";
+            }
+            moistureContent = moistureContent / 100;
+            var finalDryPercentage = document.getElementById('finalDryPercentage').value || 0.15;
+            var dryWeight = freshWeight * (1 - moistureContent) / (1 - finalDryPercentage);
+            document.getElementById('modalResultText').innerText = `Masse à atteindre pour le séchage désiré : ${dryWeight.toFixed(2)} grammes.`;
+            var resultModal = new bootstrap.Modal(document.getElementById('resultModal'));
+            resultModal.show();
+        }
+    </script>
 
     <script>
         
@@ -216,7 +253,7 @@
             }
         });
 
-        function calculateDryWeight() {
+        function calculateDryWeight2() {
             var freshWeight = document.getElementById('freshWeight').value;
             var moistureContent = document.getElementById('fruitType').value;
             var fruitName = document.getElementById('fruitType').options[document.getElementById('fruitType').selectedIndex].text;
